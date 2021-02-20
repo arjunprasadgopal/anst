@@ -5,7 +5,7 @@
   tasks:
     - name: create user
       vars:
-        password: "{{ lookup('password', 'credentials/' + item + ' length=12') }}"
+        password: "{{ lookup('password', 'credentials/' + item + ' length=10') }}"
       user:
         name: "{{ item }}"
         password: "{{ password | password_hash('sha512') }}"
