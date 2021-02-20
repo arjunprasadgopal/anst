@@ -1,0 +1,10 @@
+---
+  - name: First playbook with GIT
+    hosts: localhost 
+    vars:
+      yamlop: "{{ lookup('file', 'anst1.yml') | from_yaml }}"
+    tasks:
+      - name: Output
+        debug:
+          var: yamlop.hosts
+

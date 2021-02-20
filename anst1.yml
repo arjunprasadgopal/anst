@@ -1,0 +1,23 @@
+---
+  - name: First playbook with GIT
+    hosts: localhost 
+    gather_facts: no
+    vars:
+      pathfind: /home/arjun/gitrepos
+      
+    tasks:
+      - name: first task
+        find:
+          paths: "{{ pathfind }}"
+          recurse: true
+        register: findop
+
+      - name: Output
+        set_fact:
+          #msg: "{{ findop['files'] | map(attribute='path') }}"
+          filelist: "{{ findop['files'] | map(attribute='path') | list }}" 
+
+      - name: Output2
+        debug:
+          msg: "{{ filelist | map('relpath',pathfind) | list }}"
+
